@@ -1,0 +1,19 @@
+{
+  "name": "ra-event-backend",
+  "version": "1.0.0",
+  "description": "backend api for RA event aplication",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roong-aroon-developer/RA-event-backend.git"
+  },
+  "author": "wit03",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/roong-aroon-developer/RA-event-backend/issues"
+  },
+  "homepage": "https://github.com/roong-aroon-developer/RA-event-backend#readme"
+}
