@@ -1,4 +1,3 @@
-import { IUser, UserSchema } from './types';
 import express = require('express');
 import mongoose = require("mongoose");
 
@@ -9,10 +8,6 @@ app.use(express.json);
 
 mongoose.connect(url, { useNewUrlParser: true });
 
-const User = mongoose.model<IUser>('Cat', UserSchema);
-const result = new User({ name: "javascritp"});
-
-result.save().then(()=> console.log("meow"))
 
 app.get('/', (req: express.Request, res: express.Response) => {
     res.status(200).json({
