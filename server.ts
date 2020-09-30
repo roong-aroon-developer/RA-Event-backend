@@ -17,14 +17,19 @@ app.use(express.json())
 app.post('/events', (req: express.Request, res: express.Response) => {
     const payload = req.body;
     const event = new EventModel(payload);
-    event.save().then(()=> console.log("finished"))
+    event.save().then(()=> 
     res.status(201).end()
+    ).catch(err=> {
+        console.log(err.message)
+    })
 })
 
 app.get('/', (req: express.Request, res: express.Response) => {
-    res.json({
-        message: 'Hello World'
-    });
+    const events = EventModel.find({})
+    events.then((data)=> res.status(200).json(data)
+    ).catch(err=> {
+        console.log(err.message);
+    })
 });
 
 app.listen(9000, () => {
