@@ -72,7 +72,7 @@ app.get("/event/:n", async (req: express.Request, res: express.Response) => {
   }
 });
 
-app.put("/edit/:n", async (req: express.Request, res: express.Response) => {
+app.put("/event/:n", async (req: express.Request, res: express.Response) => {
   try{
     const { n }: any = req.params;
     const payload: any = req.body;
@@ -89,6 +89,25 @@ app.put("/edit/:n", async (req: express.Request, res: express.Response) => {
     }
     return res.status(400).send(response)
   }
+})
+
+app.delete("event/:id", async (req: express.Request, res: express.Response) => {
+    try{
+      const { id }: any = req.params;
+      const remove = await EventModel.findOneAndDelete({_id: id });
+      const response: IResponse = {
+        status: "success",
+        data: "data is deleted"
+      }
+      return res.status(200).send(response)
+    } catch (e) {
+      const response: IResponse = {
+        status: "failed",
+        data: "Data is not deleted",
+      }
+      return res.status(400).send(response)
+    }
+  
 })
 
 app.listen(9000, () => {
