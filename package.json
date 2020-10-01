@@ -7,7 +7,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "tsc": "tsc",
-    "start": "yarn run tsc --outDir ./build && node ./build/server.js"
+    "start": "yarn run tsc ./src/server.ts --outDir ./build && node ./build/server.js"
   },
   "repository": {
     "type": "git",
