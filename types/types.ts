@@ -1,4 +1,4 @@
 export interface IResponse {
     status: "success" | "failed",
-    data: object | string
+    data: object | string | {}
 }

@@ -72,6 +72,25 @@ app.get("/event/:n", async (req: express.Request, res: express.Response) => {
   }
 });
 
+app.put("/edit/:n", async (req: express.Request, res: express.Response) => {
+  try{
+    const { n }: any = req.params;
+    const payload: any = req.body;
+    const update = await EventModel.find({ name: n }).update({ $set: payload })
+    const response: IResponse = {
+      status: "success",
+      data: update
+    }
+    return res.status(200).send(response)
+  } catch(e) {
+    const response: IResponse = {
+      status: "failed",
+      data: "data not updated"
+    }
+    return res.status(400).send(response)
+  }
+})
+
 app.listen(9000, () => {
   console.log("Server is running on 9000");
 });
