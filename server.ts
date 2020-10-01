@@ -1,6 +1,7 @@
-import { EventModel } from "./models/event";
 import express = require("express");
 import mongoose = require("mongoose");
+import { IResponse } from "./types/types";
+import { EventModel } from "./models/event";
 
 const url = "mongodb://localhost:27017/node-api";
 const app: express.Application = express();
@@ -17,37 +18,58 @@ mongoose
   });
 app.use(express.json());
 
-app.post("/events", (req: express.Request, res: express.Response) => {
-  const payload = req.body;
-  const event = new EventModel(payload);
-  event
-    .save()
-    .then(() => res.status(201).end())
-    .catch((err) => {
-      res.status(400).json(err);
-      console.log(err.message);
-    });
+app.post("/create", async (req: express.Request, res: express.Response) => {
+  try {
+    const payload = req.body;
+    const event = new EventModel(payload);
+    await event.save();
+    const response: IResponse = {
+      status: "success",
+      data: "data created",
+    };
+    return res.status(201).send(response);
+  } catch (e) {
+    const response: IResponse = {
+      status: "failed",
+      data: "data conflict",
+    };
+    return res.status(409).send(response);
+  }
 });
 
-app.get("/", (req: express.Request, res: express.Response) => {
-  const events = EventModel.find({});
-  events
-    .then((data) => res.status(200).json(data))
-    .catch((err) => {
-      res.status(404).json(err);
-      console.log(err.message);
-    });
+app.get("/", async (req: express.Request, res: express.Response) => {
+  try {
+    const events = await EventModel.find({});
+    const response: IResponse = {
+      status: "success",
+      data: events,
+    };
+    return res.status(200).send(response);
+  } catch (e) {
+    const response: IResponse = {
+      status: "failed",
+      data: "data not found",
+    };
+    return res.status(404).send(response);
+  }
 });
 
-app.get("event/:name", (req: express.Request, res: express.Response) => {
-  const { name }: any = req.params;
-  const result = EventModel.findOne(name);
-  result
-    .then((data) => res.status(200).json(data))
-    .catch((err) => {
-      res.status(404).json(err);
-      console.log(err.message);
-    });
+app.get("/event/:n", async (req: express.Request, res: express.Response) => {
+  try {
+    const { n }: any = req.params;
+    const result = await EventModel.find({ name: n });
+    const response: IResponse = {
+      status: "success",
+      data: result,
+    };
+    return res.status(200).send(response);
+  } catch (e) {
+    const response: IResponse = {
+      status: "failed",
+      data: "data not found",
+    };
+    return res.status(404).send(response);
+  }
 });
 
 app.listen(9000, () => {
