@@ -1,5 +1,5 @@
 import express = require('express');
-import { IResponse } from '../types/types';
+import { IResponse } from './types/types';
 import { EventModel } from '../models/eventModel';
 
 const router = express.Router()
