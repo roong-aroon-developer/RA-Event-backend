@@ -19,6 +19,4 @@ mongoose
 app.use(express.json());
 app.use("/events", Events);
 
-app.listen(9000, () => {
-  console.log("Server is running on 9000");
-});
+export default app
