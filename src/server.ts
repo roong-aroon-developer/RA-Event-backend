@@ -1,10 +1,13 @@
 import express = require("express");
 import mongoose = require("mongoose");
-
+import bodyParser = require("body-parser")
 import Events from "./routes/event/index";
 
 const url = "mongodb://localhost:27017/node-api";
 const app: express.Application = express();
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 mongoose
   .connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
