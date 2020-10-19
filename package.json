@@ -7,8 +7,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "tsc": "tsc",
-    "start": "yarn run tsc index.ts --outDir ./build && node ./build/index.js",
-    "production": "npm run tsc index.ts --outDir ./build && node ./build/index.js"
+    "start": "tsc index.ts --outDir ./build && node ./build/index.js"
   },
   "repository": {
     "type": "git",

@@ -3,7 +3,7 @@ import mongoose = require("mongoose");
 import bodyParser = require("body-parser")
 import Events from "./routes/event/index";
 
-const url = "mongodb://mongo:27017/node-api";
+const url = "mongodb://localhost:27017/node-api";
 const app: express.Application = express();
 
 app.use(bodyParser.json())
