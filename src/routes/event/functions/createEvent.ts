@@ -4,7 +4,7 @@ import { EventModel } from '../models/eventModel';
 
 const router = express.Router()
 
-export const createEvent = router.post('/:n', async (req: express.Request, res: express.Response) =>{
+export const createEvent = router.post('/', async (req: express.Request, res: express.Response) =>{
     try {
         const payload = req.body;
         const event = new EventModel(payload);
