@@ -6,8 +6,8 @@ const router = express.Router();
 
 export const deleteEvent = router.delete("/:id", async (req: express.Request, res: express.Response) => {
   try {
-    const { n }: any = req.params;
-    await EventModel.findOneAndRemove({ _id: n })
+    const { id }: any = req.params;
+    await EventModel.findOneAndRemove({ _id: id })
     const response: IResponse = {
       status: "success",
       data:  "Data removed" ,
