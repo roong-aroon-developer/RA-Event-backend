@@ -6,12 +6,11 @@ const router = express.Router();
 
 export const deleteEvent = router.delete("/:id", async (req: express.Request, res: express.Response) => {
   try {
-    const payload = req.body;
-    const event = new EventModel(payload);
-    await event.save();
+    const { n }: any = req.params;
+    await EventModel.findOneAndRemove({ _id: n })
     const response: IResponse = {
       status: "success",
-      data: "data created",
+      data:  "Data removed" ,
     };
     return res.status(201).send(response);
   } catch (e) {
