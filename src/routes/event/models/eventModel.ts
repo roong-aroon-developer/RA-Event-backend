@@ -8,7 +8,9 @@ const eventSchema = new Schema({
     date: {type: String, required: true},
     img: {type: String, required: true},
     imgAlt: {type: String, required: true},
-    body: {type: String, required: true},  
+    body: {type: String, required: true},
+    withRegis: {type: Boolean, required: true},
+    formLink: {type: String, required: false}  
 })
 
 export const EventModel = mongoose.model('event', eventSchema)
