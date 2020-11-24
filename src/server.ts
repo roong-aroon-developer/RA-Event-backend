@@ -1,6 +1,7 @@
 import express = require("express");
 import mongoose = require("mongoose");
 import bodyParser = require("body-parser")
+import cors = require("cors")
 import compression = require("compression")
 import Events from "./routes/event/index";
 import { shouldCompress } from './config/server-config';
@@ -9,6 +10,12 @@ import { shouldCompress } from './config/server-config';
 const url = "mongodb://mongo:27017/node-api";
 const app: express.Application = express();
 
+/*On production
+app.use(cors({
+  origin: 'http://yourapp.com'
+}));
+*/
+app.use(cors());
 app.use(compression({filter: shouldCompress}))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
