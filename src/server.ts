@@ -3,7 +3,8 @@ import mongoose = require("mongoose");
 import bodyParser = require("body-parser")
 import cors = require("cors")
 import compression = require("compression")
-import Events from "./routes/event/index";
+import Events from "./routes/events/index";
+import Auth from "./routes/auth/index"
 import { shouldCompress } from './config/server-config';
 
 
@@ -34,5 +35,6 @@ mongoose
 
 app.use(express.json());
 app.use("/events", Events);
+app.use("/auth", Auth)
 
 export default app
