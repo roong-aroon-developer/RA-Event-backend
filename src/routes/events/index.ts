@@ -1,16 +1,14 @@
-import express = require('express');
+import { Router } from 'express';
 
 import { allEvent} from './functions/allEvent'
 import { findEvent } from './functions/findEvent'
 import { createEvent } from './functions/createEvent'
 import { deleteEvent } from './functions/deleteEvent'
 
-const router = express.Router()
+const router = Router()
+router.use("/", allEvent)
+router.use("/find", findEvent)
+router.use("/create", createEvent)
+router.use("/delete", deleteEvent)
 
-const Events = router
-    .use("/", allEvent)
-    .use("/find", findEvent)
-    .use("/create", createEvent)
-    .use("/delete", deleteEvent)
-
-export default Events
+export default router
