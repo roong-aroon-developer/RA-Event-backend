@@ -5,7 +5,12 @@ import { EventModel } from '../models/eventModel';
 const router = express.Router()
 
 export const findEvent = router.put('/:n', async (req: express.Request, res: express.Response) =>{
-    try{
+  if (req.header("autherization") === "SECRET_KEY") {
+
+  } else {
+    return res.status(401).send("unauthorized");
+  } 
+  try{
         const { n }: any = req.params;
         const payload: any = req.body;
         const update = await EventModel.find({ name: n }).update({ $set: payload })

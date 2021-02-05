@@ -1,11 +1,15 @@
-import express = require('express');
-import { IResponse } from './types/types';
-import { EventModel } from '../models/eventModel';
+import express = require("express");
+import { IResponse } from "./types/types";
+import { EventModel } from "../models/eventModel";
+import { createSecretKey } from "crypto";
 
-const router = express.Router()
+const router = express.Router();
 
-export const createEvent = router.post('/', async (req: express.Request, res: express.Response) =>{
-    try {
+export const createEvent = router.post(
+  "/",
+  async (req: express.Request, res: express.Response) => {
+    if (req.header("autherization") === "SECRET_KEY") {
+      try {
         const payload = req.body;
         const event = new EventModel(payload);
         await event.save();
@@ -21,4 +25,8 @@ export const createEvent = router.post('/', async (req: express.Request, res: ex
         };
         return res.status(409).send(response);
       }
-})
+    } else {
+      return res.status(401).send("unauthorized");
+    }
+  }
+);
