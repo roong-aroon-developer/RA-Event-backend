@@ -1,14 +1,13 @@
 import express = require("express");
 import { IResponse } from "./types/types";
 import { EventModel } from "../models/eventModel";
-import { createSecretKey } from "crypto";
 
 const router = express.Router();
 
 export const createEvent = router.post(
   "/",
   async (req: express.Request, res: express.Response) => {
-    if (req.header("autherization") === "SECRET_KEY") {
+    if (req.header("autherization") === process.env.ADMIN_SECRET) {
       try {
         const payload = req.body;
         const event = new EventModel(payload);

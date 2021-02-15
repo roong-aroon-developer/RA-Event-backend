@@ -5,7 +5,7 @@ import { EventModel } from '../models/eventModel';
 const router = express.Router()
 
 export const findEvent = router.put('/:n', async (req: express.Request, res: express.Response) =>{
-  if (req.header("autherization") === "SECRET_KEY") {
+  if (req.header("autherization") === process.env.ADMIN_SECRET) {
 
   } else {
     return res.status(401).send("unauthorized");

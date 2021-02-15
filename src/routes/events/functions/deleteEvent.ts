@@ -7,7 +7,7 @@ const router = express.Router();
 export const deleteEvent = router.delete(
   "/:id",
   async (req: express.Request, res: express.Response) => {
-    if (req.header("autherization") === "SECRET_KEY") {
+    if (req.header("autherization") === process.env.ADMIN_SECRET) {
       try {
         const { id }: any = req.params;
         await EventModel.findOneAndRemove({ _id: id });
