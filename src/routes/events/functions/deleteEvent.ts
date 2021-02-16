@@ -1,13 +1,17 @@
 import express = require("express");
 import { IResponse } from "./types/types";
 import { EventModel } from "../models/eventModel";
+import passport = require("passport");
+import { jwtAuth, requireJWTAuth } from "../../functions/jwtAuth";
 
+passport.use(jwtAuth);
 const router = express.Router();
 
 export const deleteEvent = router.delete(
   "/:id",
+  requireJWTAuth,
   async (req: express.Request, res: express.Response) => {
-    if (req.header("autherization") === process.env.ADMIN_SECRET) {
+    
       try {
         const { id }: any = req.params;
         await EventModel.findOneAndRemove({ _id: id });
@@ -23,8 +27,6 @@ export const deleteEvent = router.delete(
         };
         return res.status(409).send(response);
       }
-    } else {
-      return res.status(401).send("unauthorized");
-    }
+    
   }
 );

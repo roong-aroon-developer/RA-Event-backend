@@ -34,6 +34,6 @@ mongoose
 
 app.use(express.json());
 app.use("/events", Events);
-// app.use("/auth", Auth)
+app.use("/auth", Auth)
 
 export default app
