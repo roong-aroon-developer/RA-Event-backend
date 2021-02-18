@@ -1,6 +1,6 @@
 import passport = require("passport");
 import passportJWT = require("passport-jwt");
-
+require('dotenv').config();
 
 const SECRET = process.env.jwtSecret
 
