@@ -6,6 +6,7 @@ import compression = require("compression")
 import Events from "./routes/events/index";
 import Auth from "./routes/auth/index"
 import { shouldCompress } from './config/server-config';
+import ImageUpload from "./routes/img";
 
 const url = "mongodb://mongo:27017/node-api";
 const app: express.Application = express();
@@ -35,5 +36,6 @@ mongoose
 app.use(express.json());
 app.use("/events", Events);
 app.use("/auth", Auth)
+app.use("/img", ImageUpload)
 
 export default app
