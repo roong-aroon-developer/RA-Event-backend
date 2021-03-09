@@ -3,6 +3,7 @@ const Schema = mongoose.Schema
 
 const eventSchema = new Schema({
     name: {type: String, required: true},
+    displayOn: { type: String, required: true},
     path: {type: String, required: true},
     tags: {type: [String], required: true},
     date: {type: String, required: true},
