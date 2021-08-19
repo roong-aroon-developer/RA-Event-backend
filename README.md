@@ -30,17 +30,17 @@ Features:
    cd RA-Event-backend
    docker-compose build . 
    ```
-5. Run container
+5. Run container (with -d prefix for background task)
    ```sh
-   docker-compose start
+   docker-compose up 
    ```
 6. Stop container
    ```sh
    docker-compose stop
    ```
     #### Must be work with
-    - [RA Event Admin](https://reactjs.org/)
-    - [RA Event Backend](https://reactjs.org/)
+    - [RA Event](https://github.com/roong-aroon-developer/RA-Event)
+    - [RA Event Admin](https://github.com/roong-aroon-developer/RA-Event-admin)
     
 
 ## Contributing
